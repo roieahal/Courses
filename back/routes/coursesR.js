@@ -102,12 +102,12 @@ router.post("/signcourse", async (req, res) => {
 router.delete("/userFromCourse", async (req, res) => {
   const user_id = req.body.user_id;
   let name = req.body.name;
-  name = name.split("");
-  name.splice(-1, 1);
-  name = name.join("");
 
   // console.log(name);
   try {
+    name = name.split("");
+    name.splice(-1, 1);
+    name = name.join("");
     //! recive the subject id
     let subjectId_Query = `SELECT subject_id FROM subjects WHERE subject = $1;`;
     const subjectName_Values = [name];
