@@ -60,3 +60,14 @@ body {
 .container {
   padding: 2px 16px;
 }
+
+/* Set the width of the scrollbar to 8px */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+background-color: #888;
+border-radius: 10px;
+}
