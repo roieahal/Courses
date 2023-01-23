@@ -27,8 +27,6 @@ function ResponsiveAppBar() {
     getUserData();
   }, [localStorage.getItem("token")]);
 
-
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };

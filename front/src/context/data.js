@@ -21,14 +21,10 @@ function DataProvider(props) {
     setsubjects(allSubjects.data);
   };
 
-
   const getAllCoursesUser = async () => {
-      const allUserCourses = await axios.post("http://localhost:3003/api/courses/userCourses", userData);
-      setUserCourses(allUserCourses.data);
-    
-  }
-
-
+    const allUserCourses = await axios.post("http://localhost:3003/api/courses/userCourses", userData);
+    setUserCourses(allUserCourses.data);
+  };
 
   const getUserData = async () => {
     if (localStorage.getItem("token")) {
@@ -38,7 +34,7 @@ function DataProvider(props) {
     }
   };
 
-  return <DataContext.Provider value={{ userData, setUserData, counter, setCounter, subjects, setsubjects, getAllSubjects, getUserData,userCourses, setUserCourses,getAllCoursesUser }}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={{ userData, setUserData, counter, setCounter, subjects, setsubjects, getAllSubjects, getUserData, userCourses, setUserCourses, getAllCoursesUser }}>{children}</DataContext.Provider>;
 }
 
 export default DataProvider;

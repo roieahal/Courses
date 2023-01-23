@@ -19,7 +19,7 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
-        // <Route path="/MyCourses" element={<MyCourses />} />
+        <Route path="/MyCourses" element={<MyCourses />} />
       </Routes>
     </div>
   );
