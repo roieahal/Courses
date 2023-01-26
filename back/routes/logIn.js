@@ -9,7 +9,6 @@ const jwt = require("jsonwebtoken");
 router.post("/", async (req, res) => {
   const password = req.body.password;
   const email = req.body.email;
-
   try {
     //!check email
     let checkEmail = await db.query(`SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);`, [email]);
@@ -24,11 +23,11 @@ router.post("/", async (req, res) => {
     const userPassword = user.rows[0].password;
     const valiedPassword = await bcrypt.compare(password, userPassword);
     const userName = user.rows[0].name;
-    const user_id =  user.rows[0].user_id;
+    const user_id = user.rows[0].user_id;
     if (valiedPassword) {
       //!genrate token
       generateJWT = function () {
-        const token = jwt.sign({ email: email, name: userName, user_id:user_id }, "thisString");
+        const token = jwt.sign({ email: email, name: userName, user_id: user_id }, "thisString");
         return token;
       };
       const token = generateJWT();

@@ -22,14 +22,14 @@ const theme = createTheme();
 
 export default function SignUp() {
   //! states
-  const { userData, setUserData, counter, setCounter } = useContext(DataContext);
+  const { userData, setUserData, counter, setCounter,reset, setReset } = useContext(DataContext);
   const navigator = useNavigate();
 
   //!submit form
   const handleSubmit = (event) => {
     event.preventDefault();
     const formSignInData = new FormData(event.currentTarget);
-    setUserData({ ...userData, email: formSignInData.get("email"), password: formSignInData.get("password"), name: formSignInData.get("firstName") });
+    setReset({ ...reset, email: formSignInData.get("email"), password: formSignInData.get("password"), newPassword: formSignInData.get("newPassword") });
     setCounter(counter + 1);
   };
 
@@ -39,19 +39,22 @@ export default function SignUp() {
     return;
   };
 
-  //!check and and log in and get all info about the user
+  //!check and and log in and update password
   const handleHttp = async () => {
-    const result = await axios.post("http://localhost:3003/api/signUp", userData);
+    const result = await axios.post("http://localhost:3003/api/reset", reset);
     console.log(result);
     if (result.data === "Invalid email or password") {
       alert("Invalid email or password");
-    } else {
-      const getAllUserData = await axios.post("http://localhost:3003/api/courses/getByEmail", userData);
+    }else if (result.data==="something went worng"){
+      alert('something went worng')
+    }else {
+      // const getAllUserData = await axios.post("http://localhost:3003/api/courses/getByEmail", userData);
       // console.log(getAllUserData.data);
-      setUserData(getAllUserData.data);
+      // setUserData(getAllUserData.data);
       setCounter("finito");
       localStorage.setItem("token", result.headers["x-auth-token"]);
-      navigator("#");
+      alert('your password has been updated')
+      navigator("/");
     }
   };
 
@@ -88,10 +91,10 @@ export default function SignUp() {
                 <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
               </Grid>
               <Grid item xs={12}>
-                <TextField autoComplete="given-name" name="CurrentPassword" type="password" required fullWidth id="CurrentPassword" label="Current Password" autoFocus />
+                <TextField autoComplete="given-name" name="password" type="password" required fullWidth id="password" label="Current Password" autoFocus />
               </Grid>
               <Grid item xs={12}>
-                <TextField required fullWidth name="NewPassword" label="New Password" type="password" id="NewPassword" autoComplete="new-password" />
+                <TextField required fullWidth name="newPassword" label="New Password" type="password" id="NewPanewPasswordssword" autoComplete="newPassword" />
               </Grid>
             </Grid>
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>

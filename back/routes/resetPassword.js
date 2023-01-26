@@ -11,6 +11,8 @@ router.post("/", async (req, res) => {
   const email = req.body.email;
   let newPassword = req.body.newPassword;
 
+  console.log(req.body)
+
   try {
     //!check email
     let checkEmail = await db.query(`SELECT EXISTS(SELECT 1 FROM users WHERE email = $1);`, [email]);
@@ -35,7 +37,7 @@ router.post("/", async (req, res) => {
       const updatePassword = await db.query(`UPDATE users SET password = $1 WHERE user_id = $2`, [newPassword, user_id]);
       //!genrate token
       generateJWT = function () {
-        const token = jwt.sign({ email: email, name: userName }, "thisString");
+        const token = jwt.sign({ email: email, name: userName, user_id: user_id }, "thisString");
         return token;
       };
       const token = generateJWT();
@@ -45,7 +47,7 @@ router.post("/", async (req, res) => {
     }
   } catch (error) {
     console.log(error.message);
-    res.send("Invalid email or password");
+    res.send("something went worng");
   }
 });
 

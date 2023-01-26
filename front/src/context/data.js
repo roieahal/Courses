@@ -16,6 +16,8 @@ function DataProvider(props) {
 
   const [userCourses, setUserCourses] = useState([]);
 
+  const [reset, setReset] = useState({});
+
   const getAllSubjects = async () => {
     const allSubjects = await axios.get("http://localhost:3003/api/courses");
     setsubjects(allSubjects.data);
@@ -34,7 +36,7 @@ function DataProvider(props) {
     }
   };
 
-  return <DataContext.Provider value={{ userData, setUserData, counter, setCounter, subjects, setsubjects, getAllSubjects, getUserData, userCourses, setUserCourses, getAllCoursesUser }}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={{ reset, setReset, userData, setUserData, counter, setCounter, subjects, setsubjects, getAllSubjects, getUserData, userCourses, setUserCourses, getAllCoursesUser }}>{children}</DataContext.Provider>;
 }
 
 export default DataProvider;
