@@ -29,7 +29,7 @@ const AllCourses = () => {
     <div>
       <h1 style={{ textAlign: "center" }}>My Courses</h1>
       <div className="containerCourses">
-        {userCourses.map((course) => (
+        {userCourses?.map((course) => (
           <div className="card" key={course.name}>
             <div className="card-img">
               {" "}

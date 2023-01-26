@@ -24,8 +24,14 @@ function DataProvider(props) {
   };
 
   const getAllCoursesUser = async () => {
-    const allUserCourses = await axios.post("http://localhost:3003/api/courses/userCourses", userData);
-    setUserCourses(allUserCourses.data);
+    let allToken = await jwt_decode(localStorage.getItem("token"));
+    // const { name, user_id, email } = allToken;
+    // setUserData({ name, user_id, email });
+    // console.log(allToken);
+
+    const result = await axios.post("http://localhost:3003/api/courses/userCourses", allToken);
+    console.log(result.data);
+    setUserCourses(result.data);
   };
 
   const getUserData = async () => {

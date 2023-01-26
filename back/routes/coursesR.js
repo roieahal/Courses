@@ -45,7 +45,7 @@ router.get("/getByUser/:user_id", async (req, res) => {
 //get all user courses
 router.post("/userCourses", async (req, res) => {
   const user_id = req.body.user_id;
-
+// console.log(req.body)
   try {
     if (user_id) {
       let allCourses = await db.query(`SELECT name FROM courses where user_id=$1`, [user_id]);
