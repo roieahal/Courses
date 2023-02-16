@@ -144,29 +144,3 @@ router.delete("/userFromCourse", async (req, res) => {
 
 module.exports = router;
 
-// // Delete user course
-// router.delete("/:user_id", async (req, res) => {
-//   const user_id = req.body.user_id;
-//   const name = req.body.name;
-
-//   try {
-//     let subjectId_Query = `SELECT subject_id FROM subjects WHERE subject = $1;`;
-//     const subjectName_Values = [name];
-//     const subjectIdResult = await db.query(subjectId_Query, subjectName_Values);
-//     // console.log(subjectIdResult)
-//     const subject_id = subjectIdResult.rows[0].subject_id;
-
-//     let query = `SELECT user_id FROM courses WHERE subject_id=$1 and user_id=$2 `;
-//     let value = [subject_id, user_id];
-//     let user = await db.query(query, value);
-//     console.log(user.rowCount);
-//     if (user.rowCount == 0) return res.status(400).send("you cant delete course that you didnt sign up to");
-
-//     const sqlQuery = `DELETE FROM courses WHERE user_id = $1 AND subject_id = $2;`;
-//     const result = await db.query(sqlQuery, [user_id, subject_id]);
-//     res.send("you have been deleted from this course");
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(400);
-//   }
-// });
