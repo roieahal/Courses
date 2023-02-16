@@ -19,7 +19,7 @@ const AllCourses = () => {
     if (result.data === "you are already signed to this course") {
       alert(`${userData.name + ", "}you are already signed to this course`);
     } else if (result.data === "you need to sign in first") {
-      alert(`${userData.name + " "}you need to sign in first`);
+      alert(`you need to sign in first`);
     } else alert(`congratulation ${userData.name + " "} you signed to ${subject} course`);
   };
 
