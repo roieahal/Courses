@@ -7,7 +7,7 @@ const courses = require("./routes/coursesR");
 const signUp = require("./routes/signUp");
 const logIn = require("./routes/logIn");
 const reset = require("./routes/resetPassword");
-
+//check
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
